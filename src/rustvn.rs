@@ -39,7 +39,13 @@ enum Tokens {
 }
 
 fn main() {
-    let content = read_file("source.vn");
+    let argv: Vec<String> = env::args().collect();
+
+    if argv.len() < 3 || argv[1] != "-f" {
+        eprintln!("usage: rustvn -f <file.vn>");
+        return;
+    }
+    let content = read_file(&argv[2]);
     let tokens = to_tokens(&content);
 
     println!("{:?}", tokens);
