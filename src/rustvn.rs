@@ -66,9 +66,14 @@ pub fn codegen_expr(expr: &Expr) -> String {
 
 pub fn codegen_exitprogram(asm: &mut String, code: String) {
     let code = code.parse::<u8>().unwrap_or(0);
-    
-    asm.push_str("\n    mov rax, 60\n");
-    asm.push_str(&format!("    mov rdi, {}\n", code));
+
+    if code == 0 {
+        asm.push_str("\n    mov eax, 60\n");
+        asm.push_str("    xor edi, edi\n");
+    } else {
+        asm.push_str("\n    mov eax, 60\n");
+        asm.push_str(&format!("    mov edi, {}\n", code));
+    }
     asm.push_str("    syscall\n");
 }
 

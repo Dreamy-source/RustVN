@@ -1,5 +1,5 @@
 ; vn code-generation
-; example
+; code-generated example
 
 global _start
 default rel
@@ -12,6 +12,6 @@ _start:
     mov rax, (5 + (3 * (2 / 5)))
     mov [x], rax
 
-    mov rax, 60
-    mov rdi, 0
+    mov eax, 60
+    xor edi, edi
     syscall
