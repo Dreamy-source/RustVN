@@ -1,4 +1,5 @@
 ; vn code-generation
+; example
 
 global _start
 default rel
